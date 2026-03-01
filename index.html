@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
@@ -6,415 +6,28 @@
   <title>de Trappist</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --sand:#E7D8C9;
-      --dark:#1A1A1A;
-      --white:#ffffff;
-      --border: rgba(26,26,26,0.18);
-    }
-
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Inter',sans-serif;
-      background:var(--sand);
-      color:var(--dark);
-    }
-
-    /* NAVBAR */
-  nav{
-  position:fixed;
-  top:0; left:0; right:0;
-  background:rgba(231,216,201,0.95);
-  backdrop-filter:blur(6px);
-  display:grid;
-  grid-template-columns: auto 1fr auto;
-  align-items:center;
-  padding:14px 60px;
-  z-index:1000;
-}
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:48px;
-  justify-content:center;
-}
-    nav::after{
-      content:"";
-      position:absolute;
-      left:0; right:0; bottom:20px;
-      height:1px;
-      background:var(--border);
-    }
-    nav img{height:120px; width:auto; display:block}
-
-    nav ul{
-      list-style:none;
-      display:flex;
-      gap:48px;
-      align-items:center;
-    }
-
-    nav a{
-      text-decoration:none;
-      color:var(--dark);
-      font-weight:400;
-      font-size:16px;
-      letter-spacing:1px;
-      transition:opacity .25s ease;
-    }
-    nav a:hover{opacity:.65}
-
-    .contact-btn{
-      padding:10px 22px;
-      border:1px solid var(--dark);
-      border-radius:999px;
-      font-weight:500;
-      letter-spacing:.5px;
-      transition: .25s ease;
-    }
-    .contact-btn:hover{
-      background:var(--dark);
-      color:var(--white);
-    }
-
-    /* Spacer for fixed nav */
-    .spacer{height:96px}
-
-    /* HERO SPLIT */
-    .hero{
-      min-height: calc(100vh - 96px);
-      display:flex;
-      padding:70px 60px 50px;
-      gap:50px;
-      align-items:center;
-    }
-
-    .hero-left{
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-    .hero-left h1{
-      font-family:'Playfair Display',serif;
-      font-size:72px;
-      line-height:0.95;
-      margin-bottom:18px;
-    }
-    .hero-left .tagline{
-      margin-top:18px;
-      font-size:16px;
-      line-height:1.8;
-      max-width:520px;
-      opacity:0.9;
-    }
-
-    .hero-right{
-      flex:1.1;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:18px;
-    }
-    .hero-right h2{
-      font-size:34px;
-      font-weight:500;
-      line-height:1.2;
-    }
-    .hero-right p{
-      font-size:16px;
-      line-height:1.8;
-      max-width:560px;
-      opacity:0.9;
-    }
-
-    /* image grid 3 over 2 */
-    .image-grid{
-      margin-top:10px;
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:16px;
-    }
-    .image-grid .img{
-      width:100%;
-      height:165px;
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid rgba(26,26,26,0.12);
-      background:rgba(255,255,255,0.25);
-    }
-    .image-grid img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .image-grid .img:nth-child(4){grid-column:1 / 2;}
-    .image-grid .img:nth-child(5){grid-column:2 / 3;}
-
-    /* VIDEO SECTION */
-    .video-section{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:120px 20px;
-    }
-    .video-wrapper{
-      position:relative;
-      width:360px;
-      max-width:92%;
-    }
-    .video-wrapper video{
-      width:100%;
-      display:block;
-      border-radius:30px;
-      overflow:hidden;
-      box-shadow:0 18px 50px rgba(0,0,0,0.18);
-    }
-
-    .video-overlay{
-      position:absolute;
-      inset:0;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:var(--white);
-      pointer-events:none;
-    }
-    .video-overlay h2{
-      font-family:'Playfair Display',serif;
-      font-size:28px;
-      margin-bottom:14px;
-      text-shadow:0 6px 24px rgba(0,0,0,0.35);
-    }
-    .video-overlay .line{
-      width:88px;
-      height:2px;
-      background:var(--white);
-      opacity:0.9;
-      box-shadow:0 6px 20px rgba(0,0,0,0.25);
-    }
-
-    /* ABOUT SECTION */
-    .about-section{
-      background:var(--sand);
-      padding:140px 60px 160px;
-    }
-    .about-wrapper{
-      max-width:1200px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap:80px;
-      align-items:center;
-    }
-
-    .about-image-wrap{
-      position:relative;
-      max-width:360px; /* same size as video */
-    }
-    .about-image-wrap img{
-      width:100%;
-      height:auto;
-      border-radius:30px;
-      display:block;
-      box-shadow:0 18px 50px rgba(0,0,0,0.12);
-    }
-  .about-title{
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  margin-bottom: 32px;
-  color: var(--dark);
-  text-align: left;
-}
-
-    .about-text{
-      font-size:17px;
-      line-height:1.9;
-      opacity:0.95;
-      max-width:720px;
-    }
-    .about-text p{margin-bottom:26px}
-
-    /* Placeholder sections */
-    .section{
-      padding:80px 60px 120px;
-    }
-    .section h2{
-      font-family:'Playfair Display',serif;
-      font-size:34px;
-      margin-bottom:18px;
-    }
-    .section p{
-      max-width:760px;
-      line-height:1.9;
-      opacity:.9;
-    }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      nav{padding:14px 28px}
-      nav ul{gap:22px}
-      .hero{
-        flex-direction:column;
-        padding:54px 28px 40px;
-        gap:28px;
-        align-items:flex-start;
-      }
-      .hero-left h1{font-size:56px}
-      .hero-right h2{font-size:28px}
-      .image-grid{grid-template-columns:repeat(2,1fr)}
-      .image-grid .img:nth-child(4){grid-column:auto}
-      .image-grid .img:nth-child(5){grid-column:auto}
-
-      .about-section{padding:120px 28px 140px}
-      .about-wrapper{grid-template-columns:1fr; gap:50px}
-      .about-image-wrap{margin:0 auto}
-      .about-overlay-title{font-size:32px; top:-26px}
-      .section{padding:70px 28px 110px}
-    }
-
-    @media (max-width: 520px){
-      nav img{height:96px}
-      .hero-left h1{font-size:46px}
-      .image-grid .img{height:145px}
-      .video-wrapper{width:300px}
-      .video-overlay h2{font-size:22px}
-      .about-overlay-title{font-size:28px}
-    }
-    /* CTA SECTION */
-.cta-section {
-  background: var(--sand);
-  text-align: center;
-  padding: 120px 40px;
-  border-top: 1px solid var(--border);
-}
-
-.cta-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 38px;
-  margin-bottom: 18px;
-  color: var(--dark);
-}
-
-.cta-section p {
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 36px;
-  opacity: 0.9;
-}
-
-.cta-button {
-  display: inline-block;
-  padding: 14px 34px;
-  border: 1px solid var(--dark);
-  border-radius: 999px;
-  text-decoration: none;
-  color: var(--dark);
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  transition: all 0.25s ease;
-}
-
-.cta-button:hover {
-  background: var(--dark);
-  color: var(--white);
-}
-/* FOOTER */
-.footer{
-  background: var(--sand);
-  border-top: 1px solid var(--border);
-  padding: 40px 60px;
-  margin-top: 80px;
-}
-
-.footer-inner{
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.footer-brand h3{
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  margin-bottom: 10px;
-}
-
-.footer-brand p{
-  font-size: 14px;
-  opacity: 0.85;
-  line-height: 1.6;
-}
-
-.footer-info{
-  display: flex;
-  flex-wrap: wrap;        
-  gap: 18px 28px;         
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.footer-info p{
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.4;
-  opacity: 0.9;
-  white-space: nowrap;    
-}
-
-.footer a{
-  color: var(--dark);
-  text-decoration: none;
-}
-
-.footer a:hover{
-  text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 768px){
-  .footer{
-    padding: 50px 28px 70px;
-  }
-  .footer-inner{
-    flex-direction: column;
-    gap: 40px;
-  }
-@media (max-width: 768px){
-  .footer-info{
-    grid-template-columns: 1fr;
-  }
-}
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <nav>
-    <img src="logo.png" alt="De Trappist logo">
 
-    <ul>
+  <!-- NAV -->
+  <nav class="topnav">
+    <img src="logo.png" alt="De Trappist logo" class="nav-logo">
+
+    <ul class="nav-links">
       <li><a href="#ontdekken">Ontdekken</a></li>
       <li><a href="#about">Over</a></li>
-      <li><a href="#projecten">Projecten</a></li>
+      <li><a href="#projecten-contact">Projecten</a></li>
     </ul>
 
-    <a href="#contact" class="contact-btn">Contact</a>
+    <a href="#projecten-contact" class="contact-btn">Contact</a>
   </nav>
 
   <div class="spacer"></div>
 
   <!-- HERO -->
-  <section class="hero" id="ontdekken">
+  <section class="hero" id="home">
     <div class="hero-left">
       <h1>de Trappist</h1>
       <div class="tagline">
@@ -447,7 +60,6 @@ nav ul{
       <video autoplay muted loop playsinline>
         <source src="hero-trap.mp4" type="video/mp4">
       </video>
-
       <div class="video-overlay">
         <h2>Vakmanschap zit in de details</h2>
         <div class="line"></div>
@@ -455,60 +67,208 @@ nav ul{
     </div>
   </section>
 
+  <!-- ONTDEKKEN / MEXFORM -->
+  <section class="discover-section" id="ontdekken">
+    <div class="discover-inner">
+
+      <div class="discover-head">
+        <h2>Ontdekken</h2>
+        <p>
+          Voor elke renovatie werk ik met hoogwaardige systemen van <strong>MexForm</strong> —
+          ontwikkeld voor professionele traprenovatie. De collectie biedt moderne decors en slimme oplossingen,
+          met duurzame afwerking die lang mooi blijft.
+        </p>
+
+        <div class="discover-two">
+          <div class="discover-card">
+            <h3>MexForm Classic</h3>
+            <p>
+              Sterke overzettreden met een slijtvaste toplaag: strak, krasbestendig en gemaakt
+              voor jarenlang intensief gebruik.
+            </p>
+          </div>
+
+          <div class="discover-card">
+            <h3>MexForm LVT</h3>
+            <p>
+              Comfortabele treden met een hoogwaardige vinyl toplaag: waterbestendig, slijtvast
+              en geluiddempend — ideaal voor dagelijks wooncomfort.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAROUSEL: CLASSIC (17) -->
+      <div class="swatch-block" data-carousel="classic">
+        <div class="swatch-top">
+          <h3>Classic stalen</h3>
+          <div class="swatch-controls">
+            <button class="arrow" data-dir="-1" aria-label="Vorige">‹</button>
+            <button class="arrow" data-dir="1" aria-label="Volgende">›</button>
+          </div>
+        </div>
+
+        <div class="carousel" data-total="17" data-prefix="classic" data-ext="jpg">
+          <div class="track"></div>
+        </div>
+        <p class="tiny-note">Klik op de pijlen of laat automatisch afspelen.</p>
+      </div>
+
+      <!-- CAROUSEL: LVT (10) -->
+      <div class="swatch-block" data-carousel="lvt">
+        <div class="swatch-top">
+          <h3>LVT stalen</h3>
+          <div class="swatch-controls">
+            <button class="arrow" data-dir="-1" aria-label="Vorige">‹</button>
+            <button class="arrow" data-dir="1" aria-label="Volgende">›</button>
+          </div>
+        </div>
+
+        <div class="carousel" data-total="10" data-prefix="lvt" data-ext="jpg">
+          <div class="track"></div>
+        </div>
+        <p class="tiny-note">Elke 5 seconden schuift de selectie automatisch door.</p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ABOUT -->
-<section class="about-section" id="about">
-  <div class="about-wrapper">
+  <section class="about-section" id="about">
+    <div class="about-wrapper">
 
-    <div class="about-image-wrap">
-      <img src="overdetrappist.PNG" alt="Jesse Zuidema">
+      <div class="about-image-wrap">
+        <img src="overdetrappist.PNG" alt="Jesse Zuidema">
+      </div>
+
+      <div class="about-text">
+        <h2 class="about-title">Over de Trappist</h2>
+
+        <p>
+          Mijn naam is Jesse, het gezicht achter De Trappist. Na jarenlang in de zorg te hebben gewerkt merkte ik
+          dat ik steeds sterker de behoefte voelde om met mijn handen te werken en iets tastbaars te maken.
+        </p>
+
+        <p>
+          Tijdens een oriëntatieperiode kreeg ik de kans om het vak van traprenovatie in de praktijk te leren.
+          Ik ontdekte hoeveel vakmanschap, precisie en aandacht dit werk vraagt.
+        </p>
+
+        <p>
+          Voor mij staat de klant centraal. Ik neem de tijd om elke trap zo netjes en precies mogelijk af te werken.
+          Kwaliteit gaat voor snelheid — pas wanneer alles klopt, ben ik tevreden.
+        </p>
+      </div>
+
     </div>
-
-    <div class="about-text">
-      <h2 class="about-title">Over de Trappist</h2>
-
-      <p>
-        Mijn naam is Jesse, het gezicht achter De Trappist. Na jarenlang in de zorg te hebben gewerkt merkte ik dat ik steeds sterker de behoefte voelde om met mijn handen te werken en iets tastbaars te maken. Ik wilde aan het eind van de dag kunnen zien wat ik had gecreëerd — werk waar ik trots op kon zijn.
-      </p>
-
-      <p>
-        Tijdens een oriëntatieperiode kreeg ik de kans om het vak van traprenovatie in de praktijk te leren. Ik ontdekte hoeveel vakmanschap, precisie en aandacht dit werk vraagt. Geen snelle oplossingen, maar zorgvuldig werken tot elk detail klopt.
-      </p>
-
-      <p>
-       Voor mij staat de klant centraal. Ik neem de tijd om elke trap zo netjes en precies mogelijk af te werken. Kwaliteit gaat voor snelheid — pas wanneer alles klopt, ben ik tevreden.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-  <!-- PROJECTEN -->
-  <section class="section" id="projecten">
-    <h2>Projecten</h2>
-    <p>Coming soon.</p>
   </section>
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>Klaar om je trap te vernieuwen?</p>
-    <p>Plan een vrijblijvend adviesgesprek.</p>
-    <a href="contact.html" class="cta-button">Neem contact op</a>
-  </section>
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <h3>de Trappist</h3>
-    </div>
+  <!-- PROJECTEN + CONTACT (naast elkaar) -->
+  <section class="pc-split" id="projecten-contact">
+    <div class="pc-inner">
 
-    <div class="footer-info">
-      <p>📍 Werkgebied: Almere en omgeving</p>
-      <p>📞 <a href="tel:0636225369">06&nbsp;36225369</a></p>
-      <p>✉️ <a href="mailto:info@detrappist.nl">info@detrappist.nl</a></p>
-      <p>🏢 KVK: 99714000</p>
-      <p>🧾 BTW: NL005405522B46</p>
+      <div class="pc-col">
+        <h2>Projecten</h2>
+        <p>Coming soon. Hier komt een selectie van renovaties met foto’s en korte toelichting.</p>
+      </div>
+
+      <div class="pc-divider" aria-hidden="true"></div>
+
+      <div class="pc-col">
+        <h2>Contact</h2>
+        <p>Klaar om je trap te vernieuwen? Plan een vrijblijvend adviesgesprek.</p>
+        <a href="contact.html" class="cta-button pc-btn">Neem contact op</a>
+      </div>
+
     </div>
-  </div>
-</footer>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>de Trappist</h3>
+      </div>
+
+      <div class="footer-info">
+        <p>📍 Werkgebied: Almere en omgeving</p>
+        <p>📞 <a href="tel:0636225369">06&nbsp;36225369</a></p>
+        <p>✉️ <a href="mailto:info@detrappist.nl">info@detrappist.nl</a></p>
+        <p>🏢 KVK: 99714000</p>
+        <p>🧾 BTW: NL005405522B46</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CAROUSEL SCRIPT -->
+  <script>
+  (function(){
+    function pad(n){ return String(n).padStart(2,'0'); }
+
+    function initCarousel(block){
+      const carousel = block.querySelector('.carousel');
+      const track = carousel.querySelector('.track');
+      const total = Number(carousel.dataset.total);
+      const prefix = carousel.dataset.prefix;
+      const ext = carousel.dataset.ext || 'jpg';
+
+      track.innerHTML = '';
+      for(let i=1;i<=total;i++){
+        const wrap = document.createElement('div');
+        wrap.className = 'swatch';
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.alt = prefix + ' staal ' + i;
+        img.src = `${prefix}-${pad(i)}.${ext}`;
+        wrap.appendChild(img);
+        track.appendChild(wrap);
+      }
+
+      let index = 0;
+      const visible = 5;
+
+      function maxIndex(){ return Math.max(0, total - visible); }
+
+      function slideTo(i){
+        index = Math.min(Math.max(i, 0), maxIndex());
+        const first = track.querySelector('.swatch');
+        if(!first) return;
+
+        const styles = getComputedStyle(track);
+        const gap = parseFloat(styles.gap || 0) || 0;
+        const w = first.getBoundingClientRect().width;
+        const x = -(index * (w + gap));
+        track.style.transform = `translateX(${x}px)`;
+      }
+
+      block.querySelectorAll('.arrow').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const dir = Number(btn.dataset.dir);
+          slideTo(index + dir);
+          startAuto();
+        });
+      });
+
+      let timer = null;
+      function startAuto(){
+        if(timer) clearInterval(timer);
+        timer = setInterval(()=>{
+          if(index >= maxIndex()) slideTo(0);
+          else slideTo(index + 1);
+        }, 5000);
+      }
+
+      block.addEventListener('mouseenter', ()=> timer && clearInterval(timer));
+      block.addEventListener('mouseleave', startAuto);
+
+      window.addEventListener('resize', ()=>slideTo(index));
+      slideTo(0);
+      startAuto();
+    }
+
+    document.querySelectorAll('.swatch-block').forEach(initCarousel);
+  })();
+  </script>
+
 </body>
 </html>
